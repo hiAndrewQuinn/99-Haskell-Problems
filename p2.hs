@@ -6,21 +6,28 @@
 
 -- Example in Haskell:
 
--- λ> myButLast [1,2,3,4]
+--  myButLast [1,2,3,4]
 -- 3
--- λ> myButLast ['a'..'z']
+--  myButLast ['a'..'z']
 -- 'y'
 
 module Problem2 where
 
-import           Problem1                       ( silenceMaybe )
+silenceMaybe :: (Show a) => Maybe a -> String
+silenceMaybe Nothing  = ""
+silenceMaybe (Just a) = show a
 
 
 myButLast :: [a] -> Maybe a
-myButLast []           = Nothing
-myButLast (x     : []) = Nothing
-myButLast (x : _ : []) = Just x
-myButLast (_     : xs) = myButLast xs
+myButLast []       = Nothing
+myButLast [x]      = Nothing
+myButLast [x, _]   = Just x
+myButLast (_ : xs) = myButLast xs
+
+-- To run:
+-- stack ghci
+-- > :l p2 p1
+-- > main
 
 main :: IO ()
 main = do
