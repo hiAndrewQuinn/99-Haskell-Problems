@@ -22,4 +22,12 @@ myButLast (x     : []) = Nothing
 myButLast (x : _ : []) = Just x
 myButLast (_     : xs) = myButLast xs
 
-
+main :: IO ()
+main = do
+  print . myButLast $ ([] :: String)
+  print $ myButLast [1 .. 10]
+  print $ myButLast [()]
+  putStrLn . silenceMaybe . myButLast $ ([] :: String)
+  putStrLn . silenceMaybe . myButLast $ [1 .. 10]
+  putStrLn . silenceMaybe . myButLast $ [()]
+  print "Problem 2 done!"
