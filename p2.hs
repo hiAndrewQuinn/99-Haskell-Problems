@@ -13,8 +13,13 @@
 
 module Problem2 where
 
-import qualified Problem1
+import           Problem1                       ( silenceMaybe )
+
 
 myButLast :: [a] -> Maybe a
+myButLast []           = Nothing
+myButLast (x     : []) = Nothing
 myButLast (x : _ : []) = Just x
-myButLast xs           = Problem1.myLast xs
+myButLast (_     : xs) = myButLast xs
+
+
